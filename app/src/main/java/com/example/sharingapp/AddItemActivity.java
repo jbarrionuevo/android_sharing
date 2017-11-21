@@ -91,9 +91,7 @@ public class AddItemActivity extends AppCompatActivity {
         Dimensions dimensions = new Dimensions(length_str, width_str, height_str);
         Item item = new Item(title_str, maker_str, description_str, dimensions, image, null);
 
-        //item_list.addItem(item);
-        //item_list.saveItems(context);
-
+        /* execute the Command */
         AddItemCommand add_item_command = new AddItemCommand(item_list, item, context);
         add_item_command.execute();
 
