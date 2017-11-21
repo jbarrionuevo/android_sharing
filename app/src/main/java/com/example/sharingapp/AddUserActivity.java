@@ -44,15 +44,16 @@ public class AddUserActivity extends AppCompatActivity {
             return;
         }
 
-        if (!user_list.isUsernameAvailable(username_str)){
+        if (!user_list.isUsernameAvailable(username_str)) {
             username.setError("Username already taken!");
             return;
         }
 
         User user = new User(username_str, email_str, null);
 
-        user_list.addUser(user);
-        user_list.saveUsers(context);
+        /* execute the Command */
+        AddUserCommand add_user_command = new AddUserCommand(user_list, user, context);
+        add_user_command.execute();
 
         /* end AddUserActivity */
         finish();

@@ -1,8 +1,24 @@
 package com.example.sharingapp;
 
-public class AddUserCommand extends Command {
-    @Override
-    public void execute() {
+import android.content.Context;
 
+/**
+ * Command used to add a user.
+ */
+public class AddUserCommand extends Command {
+    private UserList user_list;
+    private User user;
+    private Context context;
+
+    public AddUserCommand(UserList user_list, User user, Context context) {
+        this.user_list = user_list;
+        this.user = user;
+        this.context = context;
+    }
+
+    public void execute() {
+        user_list.addUser(user);
+        setIsExecuted(user_list.saveUsers(context));
+        System.out.println("**AddUserCommand: adding users: execute()");
     }
 }
