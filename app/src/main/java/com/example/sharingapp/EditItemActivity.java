@@ -20,7 +20,7 @@ import android.widget.TextView;
  * Note: invisible EditText is used to setError for status. For whatever reason I cannot .setError to
  * the status Switch so instead this is done using an additional "invisible" EditText.
  */
-public class EditItemActivity extends AppCompatActivity{
+public class EditItemActivity extends AppCompatActivity {
 
     private ItemList item_list = new ItemList();
     private Item item;
@@ -39,7 +39,7 @@ public class EditItemActivity extends AppCompatActivity{
     private EditText width;
     private EditText height;
     private Spinner borrower_spinner;
-    private TextView  borrower_tv;
+    private TextView borrower_tv;
     private Switch status;
     private EditText invisible;
 
@@ -77,7 +77,7 @@ public class EditItemActivity extends AppCompatActivity{
         item = item_list.getItem(pos);
 
         User user = item.getBorrower();
-        if (user != null){
+        if (user != null) {
             int user_pos = user_list.getIndex(user);
             borrower_spinner.setSelection(user_pos);
         }
@@ -121,8 +121,8 @@ public class EditItemActivity extends AppCompatActivity{
     }
 
     @Override
-    protected void onActivityResult(int request_code, int result_code, Intent intent){
-        if (request_code == REQUEST_CODE && result_code == RESULT_OK){
+    protected void onActivityResult(int request_code, int result_code, Intent intent) {
+        if (request_code == REQUEST_CODE && result_code == RESULT_OK) {
             Bundle extras = intent.getExtras();
             image = (Bitmap) extras.get("data");
             photo.setImageBitmap(image);
@@ -205,7 +205,7 @@ public class EditItemActivity extends AppCompatActivity{
         edit_item_command.execute();
 
         boolean success = edit_item_command.isExecuted();
-        if (!success){
+        if (!success) {
             return;
         }
 
@@ -218,7 +218,7 @@ public class EditItemActivity extends AppCompatActivity{
      * Checked = Available
      * Unchecked = Borrowed
      */
-    public void toggleSwitch(View view){
+    public void toggleSwitch(View view) {
         if (status.isChecked()) { // status.isChecked() == true
             // means was previously borrowed, user has toggled to available
             borrower_spinner.setVisibility(View.GONE);
@@ -228,7 +228,7 @@ public class EditItemActivity extends AppCompatActivity{
 
         } else { // status.isChecked() == false
             // means not borrowed
-            if (user_list.getSize()==0){
+            if (user_list.getSize() == 0) {
                 // No contacts, need to add contacts to be able to add a borrower.
                 invisible.setEnabled(false);
                 invisible.setVisibility(View.VISIBLE);
