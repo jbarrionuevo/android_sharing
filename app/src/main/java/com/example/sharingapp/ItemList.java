@@ -94,7 +94,7 @@ public class ItemList {
         }
     }
 
-    public void saveItems(Context context) {
+    /*public void saveItems(Context context) {
         try {
             FileOutputStream fos = context.openFileOutput(FILENAME, 0);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
@@ -107,6 +107,23 @@ public class ItemList {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }*/
+
+    public boolean saveItems(Context context) {
+        boolean ret = false;
+        try {
+            FileOutputStream fos = context.openFileOutput(FILENAME, 0);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(items, osw);
+            osw.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ret;
     }
 
     public ArrayList<User> getActiveBorrowers() {

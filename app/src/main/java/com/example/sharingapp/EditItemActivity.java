@@ -140,7 +140,7 @@ public class EditItemActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    public void saveItem(View view) {
+    /*public void saveItem(View view) {
 
         String title_str = title.getText().toString();
         String maker_str = maker.getText().toString();
@@ -206,7 +206,86 @@ public class EditItemActivity extends AppCompatActivity{
 
         item_list.saveItems(context);
 
-         /* End EditItemActivity */
+         *//* End EditItemActivity *//*
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }*/
+
+    public void saveItem(View view) {
+
+        String title_str = title.getText().toString();
+        String maker_str = maker.getText().toString();
+        String description_str = description.getText().toString();
+        String length_str = length.getText().toString();
+        String width_str = width.getText().toString();
+        String height_str = height.getText().toString();
+
+
+        User user = null;
+        if (!status.isChecked()) {
+            // means borrowed
+            String borrower_str = borrower_spinner.getSelectedItem().toString();
+            user = user_list.getUserByUsername(borrower_str);
+        }
+
+        Dimensions dimensions = new Dimensions(length_str, width_str, height_str);
+
+        if (title_str.equals("")) {
+            title.setError("Empty field!");
+            return;
+        }
+
+        if (maker_str.equals("")) {
+            maker.setError("Empty field!");
+            return;
+        }
+
+        if (description_str.equals("")) {
+            description.setError("Empty field!");
+            return;
+        }
+
+        if (length_str.equals("")) {
+            length.setError("Empty field!");
+            return;
+        }
+
+        if (width_str.equals("")) {
+            width.setError("Empty field!");
+            return;
+        }
+
+        if (height_str.equals("")) {
+            height.setError("Empty field!");
+            return;
+        }
+
+        // Reuse the item id
+        String id = item.getId();
+
+        Item updated_item = new Item(title_str, maker_str, description_str, dimensions, image, id);
+
+        //suggested by course material
+        //Item updated_item = new Item(title_str, maker_str, description_str, image, id );
+        //updated_item.setDimensions(length_str, width_str, height_str);
+
+        boolean checked = status.isChecked();
+        if (!checked) {
+            // Means borrowed
+            updated_item.setStatus("Borrowed");
+            updated_item.setBorrower(user);
+        }
+
+        // Edit item
+        EditItemCommand edit_item_command = new EditItemCommand(item_list, item, updated_item, context);
+        edit_item_command.execute();
+
+        boolean success = edit_item_command.isExecuted();
+        if (!success){
+            return;
+        }
+
+        //End EditItemActivity
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
