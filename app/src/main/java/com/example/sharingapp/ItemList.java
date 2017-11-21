@@ -94,21 +94,6 @@ public class ItemList {
         }
     }
 
-    /*public void saveItems(Context context) {
-        try {
-            FileOutputStream fos = context.openFileOutput(FILENAME, 0);
-            OutputStreamWriter osw = new OutputStreamWriter(fos);
-            Gson gson = new Gson();
-            gson.toJson(items, osw);
-            osw.flush();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-
     public boolean saveItems(Context context) {
         boolean ret = false;
         try {
@@ -138,9 +123,9 @@ public class ItemList {
         return active_borrowers;
     }
 
-    public ArrayList<Item> filterItemsByStatus(String status){
+    public ArrayList<Item> filterItemsByStatus(String status) {
         ArrayList<Item> selected_items = new ArrayList<>();
-        for (Item i: items) {
+        for (Item i : items) {
             if (i.getStatus().equals(status)) {
                 selected_items.add(i);
             }

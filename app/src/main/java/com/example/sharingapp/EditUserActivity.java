@@ -74,9 +74,9 @@ public class EditUserActivity extends AppCompatActivity {
     }
 
     public void deleteUser(View view) {
-
-        user_list.removeUser(user);
-        user_list.saveUsers(context);
+        /* execute the Command */
+        DeleteUserCommand delete_user_command = new DeleteUserCommand(user_list, user, context);
+        delete_user_command.execute();
 
          /* end EditUserActivity */
         finish();

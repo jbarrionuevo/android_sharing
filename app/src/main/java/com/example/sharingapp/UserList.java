@@ -34,11 +34,11 @@ public class UserList {
         return users;
     }
 
-    public ArrayList<String> getAllUsernames(){
+    public ArrayList<String> getAllUsernames() {
         ArrayList<String> username_list = new ArrayList<String>();
-        for (User u : users){
+        for (User u : users) {
             username_list.add(u.getUsername());
-            }
+        }
         return username_list;
     }
 
@@ -58,9 +58,9 @@ public class UserList {
         return users.size();
     }
 
-    public User getUserByUsername( String username){
-        for (User u : users){
-            if (u.getUsername().equals(username)){
+    public User getUserByUsername(String username) {
+        for (User u : users) {
+            if (u.getUsername().equals(username)) {
                 return u;
             }
         }
@@ -82,12 +82,12 @@ public class UserList {
             if (user.getId().equals(u.getId())) {
                 return pos;
             }
-            pos = pos+1;
+            pos = pos + 1;
         }
         return -1;
     }
 
-    public boolean isUsernameAvailable(String username){
+    public boolean isUsernameAvailable(String username) {
         for (User u : users) {
             if (u.getUsername().equals(username)) {
                 return false;
@@ -102,7 +102,8 @@ public class UserList {
             FileInputStream fis = context.openFileInput(FILENAME);
             InputStreamReader isr = new InputStreamReader(fis);
             Gson gson = new Gson();
-            Type listType = new TypeToken<ArrayList<User>>() {}.getType();
+            Type listType = new TypeToken<ArrayList<User>>() {
+            }.getType();
             users = gson.fromJson(isr, listType); // temporary
             fis.close();
         } catch (FileNotFoundException e) {
@@ -112,7 +113,8 @@ public class UserList {
         }
     }
 
-    public void saveUsers(Context context) {
+    public boolean saveUsers(Context context) {
+        boolean ret = false;
         try {
             FileOutputStream fos = context.openFileOutput(FILENAME, 0);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
@@ -125,5 +127,6 @@ public class UserList {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return ret;
     }
 }

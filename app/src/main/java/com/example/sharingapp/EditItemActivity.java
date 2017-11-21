@@ -130,10 +130,6 @@ public class EditItemActivity extends AppCompatActivity{
     }
 
     public void deleteItem(View view) {
-        item_list.removeItem(item);
-
-        item_list.saveItems(context);
-
         /* execute the Command */
         DeleteItemCommand delete_item_command = new DeleteItemCommand(item_list, item, context);
         delete_item_command.execute();
