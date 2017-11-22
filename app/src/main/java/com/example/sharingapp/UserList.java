@@ -122,6 +122,7 @@ public class UserList {
             gson.toJson(users, osw);
             osw.flush();
             fos.close();
+            ret = true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

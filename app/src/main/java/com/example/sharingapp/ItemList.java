@@ -103,6 +103,7 @@ public class ItemList {
             gson.toJson(items, osw);
             osw.flush();
             fos.close();
+            ret = true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

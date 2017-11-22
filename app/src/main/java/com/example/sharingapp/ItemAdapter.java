@@ -37,7 +37,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 
         // Check if an existing view is being reused, otherwise inflate the view.
         if (convertView == null) {
-            convertView = inflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
         TextView title_tv = (TextView) convertView.findViewById(R.id.title_tv);
