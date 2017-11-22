@@ -19,6 +19,5 @@ public class AddUserCommand extends Command {
     public void execute() {
         user_list.addUser(user);
         setIsExecuted(user_list.saveUsers(context));
-        System.out.println("**AddUserCommand: adding users: execute()");
     }
 }

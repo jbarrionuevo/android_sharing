@@ -20,6 +20,5 @@ public class DeleteItemCommand extends Command {
     public void execute() {
         item_list.removeItem(item);
         setIsExecuted(item_list.saveItems(context));
-        System.out.println("**DeleteItemCommand: deleting items: execute()");
     }
 }

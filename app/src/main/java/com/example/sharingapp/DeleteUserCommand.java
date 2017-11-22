@@ -16,6 +16,5 @@ public class DeleteUserCommand extends Command {
     public void execute() {
         user_list.removeUser(user);
         setIsExecuted(user_list.saveUsers(context));
-        System.out.println("**DeleteUserCommand: deleting users: execute()");
     }
 }

@@ -22,10 +22,8 @@ public class EditItemCommand extends Command {
     }
 
     public void execute() {
-        //item_list.deleteItem(old_item);
         item_list.removeItem(old_item);
         item_list.addItem(new_item);
         setIsExecuted(item_list.saveItems(context));
-        System.out.println("**EditItemCommand: editing items: execute()");
     }
 }

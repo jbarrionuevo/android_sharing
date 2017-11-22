@@ -20,6 +20,5 @@ public class EditUserCommand extends Command {
         user_list.removeUser(user);
         user_list.addUser(updated_user);
         user_list.saveUsers(context);
-        System.out.println("**EditUserCommand: editing users: execute()");
     }
 }
